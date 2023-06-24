@@ -3,8 +3,10 @@
 <h1>Restaurants</h1>
 
 
-<%= link_to new_restaurant_path do %>
-  <button class="btn btn-success text-white">+ New restaurant</button>
+<% if policy(Restaurant).new? %>
+  <%= link_to new_restaurant_path do %>
+    <button class="btn btn-success text-white">+ New restaurant</button>
+  <% end %>
 <% end %>
 
 <div id="restaurants" class="mt-4 d-flex justify-content-center flex-wrap" style="gap: 10px;">

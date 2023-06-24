@@ -3,8 +3,13 @@
 <%= render @restaurant %>
 
 <div>
-  <%= link_to "Edit this restaurant", edit_restaurant_path(@restaurant) %> |
+  <!-- RestaurantPolicy.new(current_user, @restaurant).edit? -->
+  <% if policy(@restaurant).edit? %>
+    <%= link_to "Edit this restaurant", edit_restaurant_path(@restaurant) %>
+  <% end -%>
+
   <%= link_to "Back to restaurants", root_path %>
 
-  <%= button_to "Destroy this restaurant", @restaurant, method: :delete %>
+  <%#= button_to "Destroy this restaurant", @restaurant, method: :delete %>
+  <%= link_to "Destroy this restaurant", restaurant_path(@restaurant), data: { turbo_method: :delete } if policy(@restaurant).destroy?  %>
 </div>
